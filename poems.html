@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>诗词雅集 | 白鹭洲·文脉</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .poems-page {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 70px 25px;
+            box-sizing: border-box;
+        }
+
+        .poems-title {
+            margin: 0;
+            text-align: center;
+            font-size: 42px;
+            line-height: 1.5;
+        }
+
+        .poems-intro {
+            max-width: 700px;
+            margin: 15px auto 50px;
+            text-align: center;
+            color: #777;
+            line-height: 1.8;
+        }
+
+        /* 诗词列表 */
+        .poem-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* 单首诗词 */
+        .poem-card {
+            background: #fff;
+            padding: 35px 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+            box-sizing: border-box;
+        }
+
+        /* 标题 */
+        .poem-title {
+            margin: 0 0 12px;
+            font-size: 28px;
+            line-height: 1.5;
+        }
+
+        /* 作者与朝代 */
+        .poem-meta {
+            margin-bottom: 25px;
+            color: #8b3a2f;
+            font-size: 15px;
+        }
+
+        /* 诗词正文 */
+        .poem-content {
+            margin: 0 0 28px;
+            white-space: pre-line;
+            font-family: "STKaiti", "KaiTi", "楷体", serif;
+            font-size: 22px;
+            line-height: 2.1;
+            color: #2f2a26;
+        }
+
+        /* 简介 */
+        .poem-introduction {
+            margin: 0;
+            padding-top: 20px;
+            border-top: 1px solid #e8e1d6;
+            color: #666;
+            font-size: 15px;
+            line-height: 1.9;
+        }
+
+        .poem-introduction-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #8b3a2f;
+            font-weight: bold;
+        }
+
+        /* 加载失败 */
+        .poem-message {
+            text-align: center;
+            padding: 40px 20px;
+            color: #777;
+        }
+
+        /* 手机端 */
+        @media (max-width: 600px) {
+
+            .poems-page {
+                padding: 45px 18px;
+            }
+
+            .poems-title {
+                font-size: 32px;
+            }
+
+            .poem-card {
+                padding: 25px 20px;
+            }
+
+            .poem-title {
+                font-size: 24px;
+            }
+
+            .poem-content {
+                font-size: 19px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        白鹭洲·文脉
+    </div>
+
+    <nav>
+        <a href="index.html">首页</a>
+        <a href="poems.html">诗词雅集</a>
+        <a href="stories.html">书院故事</a>
+        <a href="practice.html">实践成果</a>
+    </nav>
+
+</header>
+
+
+<main class="poems-page">
+
+    <h1 class="poems-title">
+        诗词雅集
+    </h1>
+
+    <p class="poems-intro">
+        以诗词为线索，探寻白鹭洲书院与庐陵文化中的历史记忆与人文精神。
+    </p>
+
+    <section
+        id="poem-list"
+        class="poem-list">
+
+        <div class="poem-message">
+            正在加载诗词……
+        </div>
+
+    </section>
+
+</main>
+
+
+<script src="js/poems.js"></script>
+
+</body>
+</html>

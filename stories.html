@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>书院故事 | 白鹭洲·文脉</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* 页面主体 */
+        .stories-page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 70px 30px;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 42px;
+        }
+
+        .page-intro {
+            max-width: 800px;
+            margin: 0 auto 45px;
+            text-align: center;
+            line-height: 1.9;
+            color: #666;
+        }
+
+        /* 分类按钮 */
+        .story-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            padding: 9px 22px;
+            border: 1px solid #8b3a2f;
+            background: transparent;
+            color: #8b3a2f;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #8b3a2f;
+            color: white;
+        }
+
+        /* 故事卡片 */
+        .story-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .story-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+
+        .story-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .story-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .story-body {
+            padding: 25px;
+        }
+
+        .story-category {
+            display: inline-block;
+            font-size: 13px;
+            color: #8b3a2f;
+            margin-bottom: 10px;
+        }
+
+        .story-title {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .story-summary {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+
+            /* 限制显示三行 */
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .read-btn {
+            padding: 8px 18px;
+            border: none;
+            background: #8b3a2f;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* 弹窗 */
+        .story-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            z-index: 999;
+        }
+
+        .story-modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            width: min(850px, 100%);
+            max-height: 85vh;
+            overflow-y: auto;
+            background: #f8f4eb;
+            border-radius: 10px;
+            padding: 40px;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            border: none;
+            background: none;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .modal-image {
+            width: 100%;
+            max-height: 350px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 25px;
+        }
+
+        .modal-title {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .modal-category {
+            color: #8b3a2f;
+            margin-bottom: 20px;
+        }
+
+        .modal-text {
+            line-height: 2;
+            white-space: pre-line;
+        }
+
+        .modal-source {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* 手机端 */
+        @media (max-width: 900px) {
+            .story-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .stories-page {
+                padding: 45px 18px;
+            }
+
+            .page-title {
+                font-size: 32px;
+            }
+
+            .story-list {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 顶部导航 -->
+    <header>
+
+        <div class="logo">
+            白鹭洲·文脉
+        </div>
+
+        <nav>
+            <a href="index.html">首页</a>
+            <a href="poems.html">诗词雅集</a>
+            <a href="stories.html">书院故事</a>
+            <a href="practice.html">实践成果</a>
+        </nav>
+
+    </header>
+
+
+    <!-- 页面主体 -->
+    <main class="stories-page">
+
+        <h1 class="page-title">
+            书院故事
+        </h1>
+
+        <p class="page-intro">
+            一座书院，不只有古老的建筑，更有一代代人与文化交织而成的故事。
+            让我们循着历史的足迹，探寻白鹭洲书院背后的文化记忆。
+        </p>
+
+
+        
+
+
+        <!-- 故事列表 -->
+        <section
+            class="story-list"
+            id="story-list">
+
+            <!-- JavaScript自动加载 -->
+
+        </section>
+
+    </main>
+
+
+    <!-- 故事详情弹窗 -->
+    <div
+        class="story-modal"
+        id="story-modal">
+
+        <div class="modal-content">
+
+            <button
+                class="modal-close"
+                id="modal-close">
+                ×
+            </button>
+
+            <img
+                id="modal-image"
+                class="modal-image"
+                src=""
+                alt="故事图片">
+
+            <h2
+                id="modal-title"
+                class="modal-title">
+            </h2>
+
+            <div
+                id="modal-category"
+                class="modal-category">
+            </div>
+
+            <div
+                id="modal-text"
+                class="modal-text">
+            </div>
+
+            <div
+                id="modal-source"
+                class="modal-source">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        let stories = [];
+
+        const storyList =
+            document.getElementById("story-list");
+
+        const modal =
+            document.getElementById("story-modal");
+
+        const modalClose =
+            document.getElementById("modal-close");
+
+        /*
+         * 加载故事数据
+         */
+        async function loadStories() {
+
+            try {
+
+                const response =
+                    await fetch("data/stories.json");
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "stories.json读取失败"
+                    );
+
+                }
+
+                stories =
+                    await response.json();
+
+                renderStories(stories);
+
+            } catch (error) {
+
+                console.error(error);
+
+                storyList.innerHTML = `
+                    <p style="
+                        grid-column: 1/-1;
+                        text-align:center;
+                        color:#888;
+                    ">
+                        暂时无法加载故事数据，
+                        请检查 data/stories.json
+                        是否存在。
+                    </p>
+                `;
+            }
+        }
+
+
+        /*
+         * 显示故事卡片
+         */
+        function renderStories(data) {
+
+            storyList.innerHTML = "";
+
+            if (data.length === 0) {
+
+                storyList.innerHTML = `
+                    <p style="
+                        grid-column:1/-1;
+                        text-align:center;
+                    ">
+                        暂无故事内容
+                    </p>
+                `;
+
+                return;
+            }
+
+
+            data.forEach(story => {
+
+                const card =
+                    document.createElement("article");
+
+                card.className =
+                    "story-card";
+
+
+                card.innerHTML = `
+
+                    <img
+                        class="story-image"
+                        src="${story.image}"
+                        alt="${story.title}">
+
+                    <div class="story-body">
+
+                        <span class="story-category">
+                            ${story.category}
+                        </span>
+
+                        <h2 class="story-title">
+                            ${story.title}
+                        </h2>
+
+                        <p class="story-summary">
+                            ${story.summary || story.content}
+                        </p>
+
+                        <button
+                            class="read-btn"
+                            data-id="${story.id}">
+                            阅读故事
+                        </button>
+
+                    </div>
+                `;
+
+
+                card
+                    .querySelector(".read-btn")
+                    .addEventListener(
+                        "click",
+                        () => {
+                            showStory(story.id);
+                        }
+                    );
+
+
+                storyList.appendChild(card);
+
+            });
+
+        }
+
+
+        /*
+         * 显示故事详情
+         */
+        function showStory(id) {
+
+            const story =
+                stories.find(
+                    item => item.id === id
+                );
+
+            if (!story) return;
+
+
+            document.getElementById(
+                "modal-image"
+            ).src =
+                story.image || "";
+
+
+            document.getElementById(
+                "modal-title"
+            ).textContent =
+                story.title;
+
+
+            document.getElementById(
+                "modal-category"
+            ).textContent =
+                story.category;
+
+
+            document.getElementById(
+                "modal-text"
+            ).textContent =
+                story.content;
+
+
+            document.getElementById(
+                "modal-source"
+            ).textContent =
+                "资料来源：" +
+                (story.source || "团队整理");
+
+
+            modal.classList.add("show");
+
+        }
+
+
+        /*
+         * 关闭弹窗
+         */
+        modalClose.addEventListener(
+            "click",
+            () => {
+                modal.classList.remove("show");
+            }
+        );
+
+
+        /*
+         * 点击黑色背景关闭
+         */
+        modal.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target === modal
+                ) {
+                    modal.classList.remove(
+                        "show"
+                    );
+                }
+
+            }
+        );
+
+
+        /*
+         * 分类筛选
+         */
+        document
+            .querySelectorAll(".filter-btn")
+            .forEach(button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        document
+                            .querySelectorAll(
+                                ".filter-btn"
+                            )
+                            .forEach(btn => {
+                                btn.classList.remove(
+                                    "active"
+                                );
+                            });
+
+                        button.classList.add(
+                            "active"
+                        );
+
+
+                        const category =
+                            button.dataset.category;
+
+
+                        if (
+                            category === "全部"
+                        ) {
+
+                            renderStories(
+                                stories
+                            );
+
+                        } else {
+
+                            const filtered =
+                                stories.filter(
+                                    story =>
+                                        story.category ===
+                                        category
+                                );
+
+                            renderStories(
+                                filtered
+                            );
+                        }
+
+                    }
+                );
+
+            });
+
+
+        /*
+         * 开始加载
+         */
+        loadStories();
+
+    </script>
+
+</body>
+
+</html>

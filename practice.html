@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>实践成果 | 白鹭洲·文脉</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .practice-page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 70px 25px;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .page-intro {
+            max-width: 800px;
+            margin: 0 auto 50px;
+            text-align: center;
+            line-height: 1.9;
+            color: #666;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .video-box {
+            background: #111;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        video {
+            display: block;
+            width: 100%;
+            max-height: 650px;
+        }
+
+        .video-error {
+            display: none;
+            padding: 30px;
+            background: #f8f4eb;
+            color: #8b3a2f;
+            line-height: 1.8;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            align-items: start;
+        }
+
+        .result-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .result-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .result-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .download-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 9px 20px;
+            background: #8b3a2f;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 700px) {
+            .result-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-title {
+                font-size: 32px;
+            }
+        }
+
+        /* 精选照片 */
+
+.section-intro {
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.photo-item {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.photo-item:hover {
+    transform: translateY(-5px);
+}
+
+.photo-item img {
+    display: block;
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+}
+
+.photo-item p {
+    margin: 0;
+    padding: 15px 18px;
+    text-align: center;
+    line-height: 1.6;
+    color: #444;
+}
+
+
+/* 图片放大 */
+
+.image-viewer {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+
+    z-index: 2000;
+
+    padding: 30px;
+}
+
+.image-viewer.show {
+    display: flex;
+}
+
+.image-viewer img {
+    max-width: 90%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+.image-viewer p {
+    color: white;
+    margin-top: 15px;
+    font-size: 16px;
+}
+
+.close-viewer {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+
+    border: none;
+    background: transparent;
+
+    color: white;
+    font-size: 40px;
+
+    cursor: pointer;
+}
+
+
+/* 手机端 */
+
+@media (max-width: 800px) {
+
+    .photo-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .photo-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .photo-item img {
+        height: 250px;
+    }
+
+}
+
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        白鹭洲·文脉
+    </div>
+
+    <nav>
+        <a href="index.html">首页</a>
+        <a href="poems.html">诗词雅集</a>
+        <a href="stories.html">书院故事</a>
+        <a href="practice.html">实践成果</a>
+    </nav>
+
+</header>
+
+
+<main class="practice-page">
+
+    <h1 class="page-title">
+        我们的实践
+    </h1>
+
+    <p class="page-intro">
+        以脚步丈量文化，以青春记录文脉，
+        以数字技术探索传统文化传播的新路径。
+    </p>
+
+
+    <!-- 精选视频 -->
+    <section class="section">
+
+        <h2>精选视频</h2>
+
+        <div class="video-box">
+
+            <video
+                id="practiceVideo"
+                controls
+                preload="metadata"
+                poster="images/cover.jpg">
+
+                <source
+                    src="video/practice.mp4"
+                    type="video/mp4">
+
+                您的浏览器不支持 HTML5 视频播放。
+            </video>
+
+            <div
+                id="videoError"
+                class="video-error">
+
+                视频无法加载。
+
+                <br><br>
+
+                请检查：
+
+                <br>
+                ① video/practice.mp4 文件是否存在；
+                <br>
+                ② 文件名是否完全一致；
+                <br>
+                ③ 视频是否为 MP4 格式；
+                <br>
+                ④ 视频编码是否为 H.264 + AAC。
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- 实践成果 -->
+    <section class="section">
+
+        <h2>实践成果</h2>
+
+        <div class="result-grid">
+
+            <div class="result-card">
+
+                <h3>调研报告</h3>
+
+                <p>
+                    白鹭洲书院文化传承与数字化传播现状调研报告。
+                </p>
+
+                <a
+                    class="download-btn"
+                    href="documents/report.docx"
+                    target="_blank">
+
+                    查看报告
+
+                </a>
+
+            </div>
+
+
+            <div class="result-card">
+
+                <h3>访谈记录</h3>
+
+                <p>
+                    整理实践期间形成的原始访谈资料和访谈纪要。
+                </p>
+
+                <a
+                    class="download-btn"
+                    href="documents/interview.docx"
+                    target="_blank">
+
+                    查看访谈记录
+
+                </a>
+
+            </div>
+
+
+            <!-- 精选照片 -->
+<section class="section">
+
+    <h2>精选照片</h2>
+
+    <p class="section-intro">
+        镜头记录实践足迹，定格我们走近白鹭洲书院、
+        探访文化传承、探索数字传播的实践瞬间。
+    </p>
+
+    <div class="photo-gallery">
+
+        <div class="photo-item">
+            <img
+                src="images/practice/01.jpeg"
+                alt="">
+           
+        </div>
+
+        <div class="photo-item">
+            <img
+                src="images/practice/02.jpg"
+                alt="">
+            
+        </div>
+
+    
+        <div class="photo-item">
+            <img
+                src="images/practice/03.jpeg"
+                alt="">
+            
+        </div>
+
+        <div class="photo-item">
+            <img
+                src="images/practice/04.jpeg"
+                alt="">
+            
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- 图片放大窗口 -->
+<div
+    id="imageViewer"
+    class="image-viewer">
+
+    <button
+        id="closeViewer"
+        class="close-viewer">
+        ×
+    </button>
+
+    <img
+        id="viewerImage"
+        src=""
+        alt="实践照片">
+
+    <p id="viewerCaption"></p>
+
+</div>
+
+
+            <div class="result-card">
+
+                <h3>媒体报道</h3>
+
+                <p>
+                    汇总实践期间形成的微信公众号宣传成果。
+                </p>
+
+                <a
+                  class="download-btn"
+                href="https://mp.weixin.qq.com/s/SKM4C3fXiK2Sm_7hQ7CjUQ"
+                target="_blank"
+                rel="noopener noreferrer">
+
+                查看媒体报道
+
+               </a>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script>
+
+    const video =
+        document.getElementById("practiceVideo");
+
+    const errorBox =
+        document.getElementById("videoError");
+
+
+    video.addEventListener(
+        "error",
+        function () {
+
+            errorBox.style.display = "block";
+
+            console.error(
+                "视频加载失败：",
+                video.error
+            );
+
+        }
+    );
+const photoItems =
+    document.querySelectorAll(".photo-item");
+
+const imageViewer =
+    document.getElementById("imageViewer");
+
+const viewerImage =
+    document.getElementById("viewerImage");
+
+const viewerCaption =
+    document.getElementById("viewerCaption");
+
+const closeViewer =
+    document.getElementById("closeViewer");
+
+
+photoItems.forEach(item => {
+
+    item.addEventListener("click", () => {
+
+        const image =
+            item.querySelector("img");
+
+        const caption =
+            item.querySelector("p");
+
+        viewerImage.src = image.src;
+
+        viewerImage.alt = image.alt;
+
+        viewerCaption.textContent =
+            caption.textContent;
+
+        imageViewer.classList.add("show");
+
+    });
+
+});
+
+
+closeViewer.addEventListener(
+    "click",
+    () => {
+
+        imageViewer.classList.remove("show");
+
+    }
+);
+
+
+imageViewer.addEventListener(
+    "click",
+    event => {
+
+        if (event.target === imageViewer) {
+
+            imageViewer.classList.remove("show");
+
+        }
+
+    }
+);
+</script>
+
+</body>
+
+</html>
